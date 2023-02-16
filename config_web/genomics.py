@@ -23,6 +23,14 @@ APP_LIST_V2 = [
         r"/{pre}/{ver}/prevalence-by-position",
         "web.handlers.v2.genomics.PrevalenceByAAPositionHandler",
     ),
+    (
+        r"/{pre}/{ver}/most-recent-collection-date-by-location",
+        "web.handlers.v2.genomics.MostRecentCollectionDateHandler",
+    ),
+    (
+        r"/{pre}/{ver}/most-recent-submission-date-by-location",
+        "web.handlers.v2.genomics.MostRecentSubmissionDateHandler",
+    ),
 ]
 
 APP_LIST_SWITCHED_TO_V2 = [
