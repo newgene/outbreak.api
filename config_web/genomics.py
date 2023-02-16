@@ -22,6 +22,8 @@ APP_LIST_V2 = [
     (
         r"/{pre}/{ver}/prevalence-by-position",
         "web.handlers.v2.genomics.PrevalenceByAAPositionHandler",
+        r"/{pre}/{ver}/mutation-details",
+        "web.handlers.v2.genomics.MutationDetailsHandler",
     ),
 ]
 
