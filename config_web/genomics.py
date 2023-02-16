@@ -23,6 +23,10 @@ APP_LIST_V2 = [
         r"/{pre}/{ver}/prevalence-by-position",
         "web.handlers.v2.genomics.PrevalenceByAAPositionHandler",
     ),
+    (
+        r"/{pre}/{ver}/sequence-count",
+        "web.handlers.v2.genomics.SequenceCountHandler",
+    ),
 ]
 
 APP_LIST_SWITCHED_TO_V2 = [
