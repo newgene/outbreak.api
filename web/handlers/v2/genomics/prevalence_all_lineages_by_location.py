@@ -15,10 +15,11 @@ from web.handlers.genomics.util import (
 
 
 class PrevalenceAllLineagesByLocationHandler(BaseHandler):
+    # size = 100  # If size=1000 it will raise too_many_buckets_exception in case missing location_id in query.
     name = "prevalence-by-location-all-lineages"
     kwargs = dict(BaseHandler.kwargs)
     kwargs["GET"] = {
-        "location_id": {"type": str, "required": True},
+        "location_id": {"type": str, "default": None},
         "window": {"type": int, "default": None, "min": 1},
         "other_threshold": {"type": float, "default": 0.05, "min": 0, "max": 1},
         "nday_threshold": {"type": int, "default": 10, "min": 1},
@@ -42,7 +43,6 @@ class PrevalenceAllLineagesByLocationHandler(BaseHandler):
         query_cumulative = self.args.cumulative
         query = {
             "size": 0,
-            "query": {},
             "aggs": {
                 "count": {
                     "terms": {"field": "date_collected", "size": self.size},
@@ -56,7 +56,9 @@ class PrevalenceAllLineagesByLocationHandler(BaseHandler):
         date_range_filter = create_date_range_filter(
             "date_collected", self.args.min_date, self.args.max_date
         )
-        query["query"] = parse_time_window_to_query(date_range_filter, query_obj=query_obj)
+        query_obj = parse_time_window_to_query(date_range_filter, query_obj=query_obj)
+        if query_obj:
+            query["query"] = query_obj
         # import json
         # print(json.dumps(query))
         resp = await self.asynchronous_fetch(query)
