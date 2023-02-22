@@ -4,5 +4,10 @@ from .lineage_mutations import LineageMutationsHandler
 from .location import LocationHandler
 from .prevalence_by_aa_position import PrevalenceByAAPositionHandler
 from .location_details import LocationDetailsHandler
+from .mutation_details import MutationDetailsHandler
+from .mutations import MutationHandler
 from .prevalence_all_lineages_by_location import PrevalenceAllLineagesByLocationHandler
+from .prevalence_by_aa_position import PrevalenceByAAPositionHandler
+from .mutations_by_lineage import MutationsByLineage
 from .prevalence_by_location_and_time import PrevalenceByLocationAndTimeHandler
+from .submission_lag import SubmissionLagHandler
